@@ -43,7 +43,7 @@ app.post('/sync-payment', async (req, res) => {
     const contactId = contactData?.contacts?.[0]?.id;
 
     if (!contactId) {
-      console.warn(`No contact found for ${email}. ${contactRes}`);
+      console.warn(`No contact found for ${email}. Status code:${contactRes.status}. Message:${contactRes.body.stringify()}`);
       return res.status(404).json({ error: 'Contact not found on new site' });
     }
 
