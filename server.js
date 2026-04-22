@@ -37,11 +37,13 @@ app.post('/sync-payment', async (req, res) => {
         }),
       }
     );
+
+    console.log(contactRes);
     const contactData = await contactRes.json();
     const contactId = contactData?.contacts?.[0]?.id;
 
     if (!contactId) {
-      console.warn(`No contact found for ${email}`);
+      console.warn(`No contact found for ${email}. ${contactRes}`);
       return res.status(404).json({ error: 'Contact not found on new site' });
     }
 
